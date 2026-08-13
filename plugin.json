@@ -2,7 +2,7 @@
     "name": "Wartungsmodus",
     "namespace": "Wartungsmodus",
     "type": "template",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Wartungsmodus mit AN/AUS-Schalter: zeigt eine schlichte Wartungsseite (HTTP 503) im gesamten Shop.",
     "author": "Sogo",
     "serviceProvider": "Wartungsmodus\\Providers\\WartungsmodusServiceProvider"
