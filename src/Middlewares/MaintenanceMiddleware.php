@@ -2,6 +2,8 @@
 
 namespace Wartungsmodus\Middlewares;
 
+use Plenty\Modules\ShopBuilder\Helper\ShopBuilderRequest;
+use Plenty\Plugin\Application;
 use Plenty\Plugin\ConfigRepository;
 use Plenty\Plugin\Http\Request;
 use Plenty\Plugin\Http\Response;
@@ -13,7 +15,7 @@ class MaintenanceMiddleware extends Middleware
 {
     use Loggable;
 
-    const VERSION = 'v1.0.2';
+    const VERSION = 'v1.0.3';
 
     public function before(Request $request)
     {
@@ -91,18 +93,18 @@ class MaintenanceMiddleware extends Middleware
     private function isEditorOrPreview(): bool
     {
         try {
-            if (class_exists('\Plenty\Modules\ShopBuilder\Helper\ShopBuilderRequest')) {
-                $shopBuilderRequest = pluginApp(\Plenty\Modules\ShopBuilder\Helper\ShopBuilderRequest::class);
-                if ($shopBuilderRequest->isShopBuilder()) {
-                    return true;
-                }
+            /** @var ShopBuilderRequest $shopBuilderRequest */
+            $shopBuilderRequest = pluginApp(ShopBuilderRequest::class);
+            if ($shopBuilderRequest->isShopBuilder()) {
+                return true;
             }
         } catch (\Throwable $e) {
             // Pruefung fehlgeschlagen -> nicht blockieren, weiter mit naechster Pruefung.
         }
 
         try {
-            $app = pluginApp(\Plenty\Plugin\Application::class);
+            /** @var Application $app */
+            $app = pluginApp(Application::class);
             if ($app->isAdminPreview() || $app->isBackendRequest()) {
                 return true;
             }
