@@ -1,0 +1,18 @@
+{
+    "formatVersion": 1,
+    "menu": {
+        "settings": {
+            "label": "Config.settingsTab",
+            "formFields": {
+                "settings.active": {
+                    "type": "checkBox",
+                    "required": false,
+                    "label": "Config.activeLabel",
+                    "options": {
+                        "defaultValue": "false"
+                    }
+                }
+            }
+        }
+    }
+}
