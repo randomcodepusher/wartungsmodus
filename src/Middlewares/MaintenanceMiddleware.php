@@ -23,6 +23,20 @@ class MaintenanceMiddleware extends Middleware
         $config = pluginApp(ConfigRepository::class);
         $active = $config->get('Wartungsmodus.settings.active', 'false');
 
+        // Diagnose-Modus: nur bei explizitem Aufruf mit ?wartungsdebug=1.
+        // Liefert die rohen Konfig-Werte als Response-Header zurueck.
+        if ($request->get('wartungsdebug') !== null) {
+            $debug = 'v1.0.1'
+                . '; settings.active=' . json_encode($config->get('Wartungsmodus.settings.active', 'MISSING'))
+                . '; active=' . json_encode($config->get('Wartungsmodus.active', 'MISSING'))
+                . '; all=' . json_encode($config->get('Wartungsmodus', 'MISSING'));
+
+            return $response->make($response->content(), $response->status(), [
+                'Content-Type'   => 'text/html; charset=UTF-8',
+                'X-Wartungsmodus' => $debug,
+            ]);
+        }
+
         // Checkbox liefert String "true"/"false"; defensiv wie IO pruefen.
         if (!in_array($active, ['true', '1', 1, true], true)) {
             return $response;
