@@ -2,8 +2,8 @@
     "name": "Wartungsmodus",
     "namespace": "Wartungsmodus",
     "type": "template",
-    "version": "1.0.3",
-    "description": "Wartungsmodus mit AN/AUS-Schalter: zeigt eine schlichte Wartungsseite (HTTP 503) im gesamten Shop.",
+    "version": "1.0.4",
+    "description": "Wartungsmodus mit AN/AUS-Schalter: zeigt eine schlichte Wartungsseite (HTTP 200 + noindex) nur auf den konfigurierten Shop-Domains, nie auf der Plenty-Systemadresse.",
     "author": "Sogo",
     "serviceProvider": "Wartungsmodus\\Providers\\WartungsmodusServiceProvider"
 }

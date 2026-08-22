@@ -11,6 +11,14 @@
                     "options": {
                         "defaultValue": "false"
                     }
+                },
+                "settings.hosts": {
+                    "type": "inputText",
+                    "required": false,
+                    "label": "Config.hostsLabel",
+                    "options": {
+                        "defaultValue": "sogo24.de, www.sogo24.de"
+                    }
                 }
             }
         }
